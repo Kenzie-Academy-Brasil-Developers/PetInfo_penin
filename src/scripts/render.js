@@ -6,16 +6,21 @@ export async function renderAllPosts() {
   postSection.innerHTML = "";
   const posts = await getAllPosts();
 
+
   posts.forEach(async (post) => {
     const postArticle = await renderPost(post, true);
     postSection.appendChild(postArticle);
   });
 }
 
+
+
 // Renderiza um post
 async function renderPost(post) {
   const postContainer = document.createElement("article");
   postContainer.classList.add("post");
+
+  const modalControler = document.querySelector(".modal__controler")
 
   const postTitle = document.createElement("h2");
   postTitle.classList.add("post__title", "text1", "bolder");
@@ -34,10 +39,49 @@ async function renderPost(post) {
   openButton.innerText = "Acessar publicação";
   openButton.dataset.id = post.id;
 
+  openButton.addEventListener("click", (event) => {
+    modalControler.innerHTML = ""
+    const render = renderPostModal(post)
+
+    modalControler.append(render)
+    modalControler.showModal()
+  })
+
   postContainer.append(postHeader, postTitle, postContent, openButton);
 
   return postContainer;
+
+
+
 }
+function renderPostModal(post) {
+  const divModal = document.createElement("div")
+  divModal.classList.add("modal__container")
+  
+  const postContainer = document.createElement("article");
+  postContainer.classList.add("post");
+
+
+  const postTitle = document.createElement("h2");
+  postTitle.classList.add("post__title", "text1", "bolder");
+  postTitle.innerText = post.title;
+
+  const postContent = document.createElement("p");
+  postContent.classList.add("post__content", "text3");
+
+  const postHeader = renderPostHeaderModal(post);
+
+  postContent.classList.add("post__content--modal", "text3");
+  postContent.innerText = post.content;
+
+  
+
+  postContainer.append(postHeader, postTitle, postContent, );
+  divModal.append(postContainer)
+  return divModal;
+
+}
+
 
 // Verifica a permissao do usuário para editar/deletar um post
 async function checkEditPermission(authorID) {
@@ -88,6 +132,52 @@ async function renderPostHeader(post) {
     const postActions = renderPostActions(post.id);
     postHeader.appendChild(postActions);
   }
+
+  return postHeader;
+}
+
+
+function renderPostHeaderModal(post) {
+  const userInfo = post.user;
+
+  const postDateInfo = handleDate(post.createdAt);
+
+  const postHeader = document.createElement("header");
+  postHeader.classList.add("post__header");
+
+  const postInfo = document.createElement("div");
+  postInfo.classList.add("post__info");
+
+  const authorImage = document.createElement("img");
+  authorImage.classList.add("post__author-image");
+  authorImage.src = userInfo.avatar;
+
+  const authorName = document.createElement("h2");
+  authorName.classList.add("post__author-name", "text4", "bolder");
+  authorName.innerText = userInfo.username;
+
+  const divisor = document.createElement("small");
+  divisor.innerText = "|";
+  divisor.classList.add("post__date", "text4");
+
+  const postDate = document.createElement("small");
+  postDate.classList.add("post__date", "text4");
+  postDate.innerText = postDateInfo;
+  
+  const closeModal = document.createElement("button")
+  closeModal.innerText = "X"
+  closeModal.classList.add("close__modal")
+
+  const modalControler = document.querySelector(".modal__controler")
+  closeModal.addEventListener("click", () => {
+   modalControler.close()
+  })
+
+  postInfo.append(authorImage, authorName, divisor, postDate, closeModal);
+
+  postHeader.appendChild(postInfo);
+
+
 
   return postHeader;
 }

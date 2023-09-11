@@ -110,6 +110,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
+  
 }
 
 .post__info {
@@ -174,4 +176,129 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--brand-1);
+}
+
+.modal__controler{
+  width: 85%;
+}
+
+.modal__container{
+
+  margin: 20px;
+}
+.post__content--modal{
+  color: var(--gray-3);
+  word-break: break-all;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.close__modal{
+  display: flex;
+  font-size: medium;
+  font-weight: 100;
+  color: var(--gray-4);
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: var(--gray-9);
+  justify-content: center;
+  align-items: center;
+position: absolute;
+right: 20px;
+}
+
+.post__new{
+  height: 44%;
+  width: 80%;
+}
+
+.modal__div{
+  display: flex;
+    flex-direction: column;
+   height: 100%;
+   padding: 20px;
+   gap:20px;
+    
+}
+
+.modal__header{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#closeModal{
+  font-size: medium;
+  font-weight: 100;
+  color: var(--gray-4);
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: var(--gray-9);
+  justify-content: center;
+  align-items: center;
+}
+
+.h2__title, .modal__title{
+  font-size: larger;
+  font-weight: 900;
+}
+
+.form__post{
+  display: flex;
+  width: 100%;
+  height: 90%;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#postTitle {
+display: flex;
+width: 90%;
+
+}
+
+#postContent{
+  width: 90%;
+  height: 30%;
+}
+
+.div__buttons{
+  width: 92%;
+  height: 50px;
+  display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    gap: 8px;
+}
+
+#cancelModal{
+  width: 90px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: var(--gray-7);
+  border: none;
+
+}
+
+#cancelModal:hover{
+  background-color: var(--gray-6);
+}
+
+#postModal{
+  width: 90px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: var(--brand-1);
+  color: #fff;
+  border: none;
+}
+#postModal:hover{
+  background-color: var(--brand-2);
 }
