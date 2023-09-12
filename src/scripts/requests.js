@@ -18,7 +18,7 @@ const requestHeaders = {
   Authorization: `Bearer ${token}`,
 };
 
-// Informações de usuário logado
+
 export async function getCurrentUserInfo() {
   const request = await fetch(`${baseUrl}/users/profile`, {
     method: "GET",
@@ -29,7 +29,7 @@ export async function getCurrentUserInfo() {
   return user;
 }
 
-// Listagem de posts
+
 export async function getAllPosts() {
   const request = await fetch(`${baseUrl}/posts`, {
     method: "GET",
@@ -39,7 +39,7 @@ export async function getAllPosts() {
   return posts;
 }
 
-// Desenvolva as funcionalidades de requisições aqui
+
 
 export async function loginUser(user) {
   const requestLogin = await fetch(`${baseUrl}/login`, {
@@ -65,15 +65,15 @@ export async function loginUser(user) {
 
       } else {
         toast(responseJson.message, "#c83751")
-         if(responseJson.message === "O email está incorreto") {
+        if (responseJson.message === "O email está incorreto") {
 
           smallEmail.classList.remove("hidden");
           smallPassword.classList.add("hidden");
-        }else if (responseJson.message === "A senha está incorreta") {
+        } else if (responseJson.message === "A senha está incorreta") {
 
           smallPassword.classList.remove("hidden");
           smallEmail.classList.add("hidden");
-          console.log(smallPassword)
+
         }
       }
 
@@ -90,15 +90,15 @@ export async function cadastreUser(user) {
     body: JSON.stringify(user)
   })
     .then(async (response) => {
-      
-      
+
+
       if (response.ok) {
 
 
 
-          alert("seu cadastro deu certo")
-          location.replace("../../index.html")
-        
+        alert("seu cadastro deu certo")
+        location.replace("../../index.html")
+
 
       } else {
         alert("algo deu errado", "#c83751")
@@ -108,57 +108,57 @@ export async function cadastreUser(user) {
   return requestCad;
 }
 
- export async function criarPosts(user) {
+export async function criarPosts(user) {
   const requestPost = await fetch(`${baseUrl}/posts/create`, {
     method: "POST",
     headers: crieteHedres(),
     body: JSON.stringify(user)
   })
-    .then(async(response) => {
+    .then(async (response) => {
       const convert = await response.json()
 
-      if(response.ok){
+      if (response.ok) {
         alert("post criado")
         return convert
-      }else{
+      } else {
         alert(convert.message)
       }
     })
-    return requestPost
+  return requestPost
 }
 
 export const postsCriado = async () => {
-  const posts = await fatch(`${baseUrl}/posts`,{
+  const posts = await fatch(`${baseUrl}/posts`, {
     method: "GET",
     headers: crieteHedres()
   })
-  .then(async (response) => {
-    if(response.ok) {
-     return response.json()
-    }else{
-      alert("não foi possivel postar no momento")
-    }
-  })
+    .then(async (response) => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        alert("não foi possivel postar no momento")
+      }
+    })
 
-return posts
+  return posts
 
 }
 
 export const postById = async (postId) => {
   const post = await fetch(`${baseUrl}/posts/${postId}`, {
     method: "GET",
-    headers: crieteHedres() 
+    headers: crieteHedres()
   })
-  .then(async (response) => {
-    const convert = await response.json()
+    .then(async (response) => {
+      const convert = await response.json()
 
-    if(response.ok){
-      return convert
-    }else{
-      alert(convert.message)
-    }
+      if (response.ok) {
+        return convert
+      } else {
+        alert(convert.message)
+      }
 
-  })
+    })
 
   return post
 }
@@ -169,18 +169,18 @@ export const updatePostById = async (postId, postBody) => {
     headers: crieteHedres(),
     body: JSON.stringify(postBody)
   })
-  .then(async (response) => {
-    const convert = await response.json()
+    .then(async (response) => {
+      const convert = await response.json()
 
-    if(response.ok){
-      alert("post atualizado com sucesso")
+      if (response.ok) {
+        alert("post atualizado com sucesso")
 
-      return convert
-    }else{
-      alert(convert.message)
-    }
-  })
-  
+        return convert
+      } else {
+        alert(convert.message)
+      }
+    })
+
 }
 
 export const deletPostById = async (postId) => {
@@ -188,17 +188,17 @@ export const deletPostById = async (postId) => {
     method: "DELETE",
     headers: crieteHedres()
   })
-  .then(async (response) => {
-    const convert = await response.json()
+    .then(async (response) => {
+      const convert = await response.json()
 
-    if(response.ok){
-      alert(convert.message)
+      if (response.ok) {
+        alert(convert.message)
 
-      return convert
-    }else{
-      alert(convert.message)
-    }
-  })
+        return convert
+      } else {
+        alert(convert.message)
+      }
+    })
   return post
 }
 

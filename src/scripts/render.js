@@ -1,6 +1,6 @@
 import { getCurrentUserInfo, getAllPosts } from "./requests.js";
 
-// Renderiza todos os posts
+
 export async function renderAllPosts() {
   const postSection = document.querySelector(".posts");
   postSection.innerHTML = "";
@@ -15,7 +15,7 @@ export async function renderAllPosts() {
 
 
 
-// Renderiza um post
+
 async function renderPost(post) {
   const postContainer = document.createElement("article");
   postContainer.classList.add("post");
@@ -83,7 +83,7 @@ function renderPostModal(post) {
 }
 
 
-// Verifica a permissao do usuário para editar/deletar um post
+
 async function checkEditPermission(authorID) {
   const { id } = await getCurrentUserInfo();
 
@@ -94,7 +94,7 @@ async function checkEditPermission(authorID) {
   }
 }
 
-// Renderiza o cabeçalho de um post no feed
+
 async function renderPostHeader(post) {
   const userInfo = post.user;
 
@@ -182,7 +182,7 @@ function renderPostHeaderModal(post) {
   return postHeader;
 }
 
-// Renderiza as opções de "Editar" e "Deletar" caso o usuário seja dono do post
+
 function renderPostActions(postID) {
   const actionsContainer = document.createElement("div");
   actionsContainer.classList.add("post__actions");
@@ -214,7 +214,7 @@ function renderPostActions(postID) {
   return actionsContainer;
 }
 
-// Lida com a data atual
+
 function handleDate(timeStamp) {
   const months = [
     "Janeiro",

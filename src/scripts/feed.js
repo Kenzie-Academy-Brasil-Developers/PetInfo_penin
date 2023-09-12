@@ -1,5 +1,5 @@
-import { renderAllPosts } from "./render.js";
-import { criarPosts, getCurrentUserInfo } from "./requests.js";
+import { renderAllPosts } from "./render.js"
+import { criarPosts, getCurrentUserInfo } from "./requests.js"
 
 async function showUserMenu() {
   const userAction = document.querySelector(".user__image");
@@ -18,7 +18,7 @@ async function showUserMenu() {
 }
 
 function main() {
-  // Adiciona os eventos de click ao menu flutuante de logout
+ 
   const logaltButton = document.querySelector(".logout__button")
 
   logaltButton.addEventListener("click", (event) => {
@@ -32,7 +32,7 @@ function main() {
 
   })
   showUserMenu();
-  // Renderiza todos os posts no feed (render.js)
+ 
   renderAllPosts();
 }
 

@@ -1,6 +1,6 @@
 import { cadastreUser } from "./requests.js"
 import { toast } from "./toasti.js"
-// Desenvolva as funcionalidades de cadastro aqui
+
 function cadaster() {
 
     const user = document.querySelector("#user")
